@@ -90,6 +90,32 @@ body {
   }
 }
 
+/* Chris' CSS ;) */
+
+#main-image {
+  max-width: 400px;
+  margin-bottom: 100px;
+}
+
+.image-nav {
+  &:not(.inactive) {
+    cursor: pointer;
+  }
+  &.inactive {
+    color: #EEE;
+  }
+}
+
+#thumbnail-container {
+  img {
+    display: inline;
+    margin-right: 20px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
 .active-thumbnail {
   border: 1px solid blue;
 }

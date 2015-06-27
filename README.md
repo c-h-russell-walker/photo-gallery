@@ -1,6 +1,6 @@
 # photo-gallery
 POC/Exploratory Photo Gallery
-Following commands in README.md surrounded with backticks(`) are in terminal.
+Following commands in README.md surrounded with backticks(`) or shown as "code" in markdown are in terminal.
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.11.1.
@@ -59,3 +59,5 @@ Install/update compass with:
 Run `grunt` to run through tests and be sure it builds with no errors
 
 Run `grunt serve` to see the app run locally in your browser: http://localhost:9000/#/
+
+## TODO - Write up instructions on use for Zipped version of project

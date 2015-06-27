@@ -10,11 +10,20 @@
 <div class="row marketing">
   <h4>Here's our very cool photo gallery app</h4>
 
-  <img ng-src="{{ mainImage.src }}" alt="{{ image.name }}" />
+  <span class="glyphicon glyphicon-chevron-left image-nav"
+        ng-class="{'inactive': matchMainImage(0)}"
+        ng-click="decrementGalleryImage()"></span>
 
-  <div ng-repeat="image in galleryImages">
-    <img ng-src="{{ image.src }}"
-         ng-class="{'active-thumbnail': isActiveThumbnail(image.id)}"
+  <img ng-src="{{ mainImage.src }}" alt="{{ image.name }}" id="main-image" />
+
+  <span class="glyphicon glyphicon-chevron-right image-nav"
+        ng-class="{'inactive': matchMainImage(lastImageId())}"
+        ng-click="incrementGalleryImage()"></span>
+
+  <div id="thumbnail-container">
+    <img ng-repeat="image in galleryImages"
+         ng-src="{{ image.src }}"
+         ng-class="{'active-thumbnail': matchMainImage(image.id)}"
          ng-click="updateMainImage(image.id)"
          width="90"
          alt="{{ image.name }}" />
