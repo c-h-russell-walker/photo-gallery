@@ -22,7 +22,7 @@ What follows are steps that were taken to create project.
 Check if you have yeoman installed by running `yo -h` in the terminal
 
 Install Yeoman/bower/grunt/gulp (if need be):
-`run npm install -g yo bower grunt-cli gulp`
+run `npm install -g yo bower grunt-cli gulp`
 
 Install angular generator:
 `npm install -g generator-angular`
@@ -47,7 +47,7 @@ Clone git repo in what will be parent directory - For example:
 /Users/YOUR_NAME/Sites
 `git clone`
 
-In project directory ('photo-gallery' unless you've renamed it) run `bower install` to get project's dependencies
+In project directory ('photo-gallery' unless you've renamed it) run `npm install` & `bower install` to get project's dependencies
 Now run `grunt` (builds the project)
 
 You may see the following error (in my instance is was from not having compass up to date):

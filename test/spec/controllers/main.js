@@ -17,6 +17,6 @@ describe('Controller: MainCtrl', function () {
     }));
 
     it('should attach a list of galleryImages to the scope', function () {
-        expect(scope.galleryImages.length).toBe(3);
+        expect(scope.galleryImages.length).toBe(scope.galleryLength());
     });
 });

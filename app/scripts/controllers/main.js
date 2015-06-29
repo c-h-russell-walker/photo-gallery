@@ -16,7 +16,7 @@ angular.module('photoGalleryApp')
         function init() {
             // TODO - Can we clean up this global var implementation?
             $window.jsonFlickrFeed = function(data){
-                // TODO - get linter to allow this short-cicuiting
+                /* jshint expr: true */ /* Needed for short-circuiting */
                 data.items && data.items.forEach(function pushImages(element) {
                     fetchedImages.push(element.media.m);
                 });
