@@ -8,23 +8,37 @@
     * Controller of the photoGalleryApp
     */
 angular.module('photoGalleryApp')
-    .controller('MainCtrl', function($scope) {
+    .controller('MainCtrl', function($scope, $http, $window) {
 
         $scope.galleryImages = [];
+        var fetchedImages = [];
 
         function init() {
-            // TODO - confirm we want to use a list since the next/prev arrows are dependent on zero based indices
-            // TODO - after that, fetch images from an API
-            var fetchedImages = [
-                'http://24.media.tumblr.com/tumblr_ljx8e8W6821qh28hmo1_400.gif',
-                'http://30.media.tumblr.com/tumblr_m32sjwOb3h1qjjr1oo1_1280.png',
-                'http://25.media.tumblr.com/tumblr_m43tsfAAfa1qhwmnpo1_1280.jpg'
-            ];
+            // TODO - Can we clean up this global var implementation?
+            $window.jsonFlickrFeed = function(data){
+                // TODO - get linter to allow this short-cicuiting
+                data.items && data.items.forEach(function pushImages(element) {
+                    fetchedImages.push(element.media.m);
+                });
+                addImages();
+            };
 
+            var url = 'http://api.flickr.com/services/feeds/photos_public.gne?callback=JSON_CALLBACK';
+            $http.jsonp(url,
+                {
+                    params: {
+                        tags: 'cats',
+                        tagmode: 'any',
+                        format: 'json'
+                    }
+                });
+        }
+
+        function addImages() {
             fetchedImages.forEach(function addImagesToList(element, index) {
                 $scope.galleryImages.push({
-                        id: index,
-                        src: element
+                    id: index,
+                    src: element
                 });
             });
 
@@ -40,7 +54,7 @@ angular.module('photoGalleryApp')
         };
 
         $scope.matchMainImage = function matchMainImage(imageId) {
-            return $scope.mainImage.id === imageId;
+            return $scope.mainImage && $scope.mainImage.id === imageId;
         };
 
         $scope.updateMainImage = function updateMainImage(imageId) {
