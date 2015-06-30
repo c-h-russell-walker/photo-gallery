@@ -13,7 +13,7 @@ angular.module('photoGalleryApp')
         $scope.galleryImages = [];
         var fetchedImages = [];
 
-        function init() {
+        this.init = function() {
             // TODO - Can we clean up this global var implementation?
             $window.jsonFlickrFeed = function(data){
                 /* jshint expr: true */ /* Needed for short-circuiting */
@@ -75,5 +75,5 @@ angular.module('photoGalleryApp')
             $scope.mainImage = $scope.galleryImages[$scope.mainImage.id - 1];
         };
 
-        init();
+        this.init();
     });
