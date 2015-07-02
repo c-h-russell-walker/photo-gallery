@@ -13,14 +13,14 @@ angular.module('photoGalleryApp')
         $scope.galleryImages = [];
         var fetchedImages = [];
 
-        this.init = function() {
+        function init() {
             // TODO - Can we clean up this global var implementation?
             $window.jsonFlickrFeed = function(data){
                 /* jshint expr: true */ /* Needed for short-circuiting */
                 data.items && data.items.forEach(function pushImages(element) {
                     fetchedImages.push(element.media.m);
                 });
-                addImages();
+                $scope.addImages(fetchedImages);
             };
 
             var url = 'http://api.flickr.com/services/feeds/photos_public.gne?callback=JSON_CALLBACK';
@@ -34,8 +34,8 @@ angular.module('photoGalleryApp')
                 });
         }
 
-        function addImages() {
-            fetchedImages.forEach(function addImagesToList(element, index) {
+        $scope.addImages = function addImages(images) {
+            images.forEach(function addImagesToList(element, index) {
                 $scope.galleryImages.push({
                     id: index,
                     src: element
@@ -43,7 +43,7 @@ angular.module('photoGalleryApp')
             });
 
             $scope.mainImage = $scope.galleryImages[0];
-        }
+        };
 
         $scope.galleryLength = function galleryLength() {
             return $scope.galleryImages.length;
@@ -75,5 +75,5 @@ angular.module('photoGalleryApp')
             $scope.mainImage = $scope.galleryImages[$scope.mainImage.id - 1];
         };
 
-        this.init();
+        init();
     });
